@@ -1,0 +1,3 @@
+/home/dumi/MPI_Sorting/cmake-build-debug/CMakeFiles/MPI_Sorting.dir
+/home/dumi/MPI_Sorting/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/dumi/MPI_Sorting/cmake-build-debug/CMakeFiles/rebuild_cache.dir
