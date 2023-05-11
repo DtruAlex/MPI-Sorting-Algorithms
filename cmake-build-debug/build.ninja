@@ -67,12 +67,6 @@ build CMakeFiles/MPI_Sorting.dir/sortingAlgorithms.cpp.o: CXX_COMPILER__MPI_Sort
   OBJECT_DIR = CMakeFiles/MPI_Sorting.dir
   OBJECT_FILE_DIR = CMakeFiles/MPI_Sorting.dir
 
-build CMakeFiles/MPI_Sorting.dir/utilities.cpp.o: CXX_COMPILER__MPI_Sorting_Debug /home/dumi/MPI_Sorting/utilities.cpp || cmake_object_order_depends_target_MPI_Sorting
-  DEP_FILE = CMakeFiles/MPI_Sorting.dir/utilities.cpp.o.d
-  FLAGS = -g -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles/MPI_Sorting.dir
-  OBJECT_FILE_DIR = CMakeFiles/MPI_Sorting.dir
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target MPI_Sorting
@@ -81,7 +75,7 @@ build CMakeFiles/MPI_Sorting.dir/utilities.cpp.o: CXX_COMPILER__MPI_Sorting_Debu
 #############################################
 # Link the executable MPI_Sorting
 
-build MPI_Sorting: CXX_EXECUTABLE_LINKER__MPI_Sorting_Debug CMakeFiles/MPI_Sorting.dir/main.cpp.o CMakeFiles/MPI_Sorting.dir/numberGenerator.cpp.o CMakeFiles/MPI_Sorting.dir/sortingAlgorithms.cpp.o CMakeFiles/MPI_Sorting.dir/utilities.cpp.o
+build MPI_Sorting: CXX_EXECUTABLE_LINKER__MPI_Sorting_Debug CMakeFiles/MPI_Sorting.dir/main.cpp.o CMakeFiles/MPI_Sorting.dir/numberGenerator.cpp.o CMakeFiles/MPI_Sorting.dir/sortingAlgorithms.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/MPI_Sorting.dir
   POST_BUILD = :
