@@ -14,6 +14,14 @@ void stdSortTest(int arr[], int len){
     double elapsed = (double) (stop - start) / CLOCKS_PER_SEC; //cpu time
     std::chrono::duration<double> fp_ms = t2 - t1;
     printf("%2.8f -cpu time\n",elapsed);printf("%2.8f -real time \n",fp_ms.count());
+    for(int j=0;j<len-1;j++)
+    {
+        if(arr[j]>arr[j+1])
+        {
+            printf("wroooong\n");
+            return;
+        }
+    }
 }
 
 void insertionSortTest(int arr[], int len){
@@ -30,7 +38,7 @@ void insertionSortTest(int arr[], int len){
         if(arr[j] > arr[j + 1])
         {
             printf("wroooong\n");
-
+            return;
         }
     }
 }
@@ -50,7 +58,7 @@ void selectionSortTest(int arr[], int len){
         if(arr[j]>arr[j+1])
         {
             printf("wroooong\n");
-
+            return;
         }
     }
 }
@@ -69,6 +77,7 @@ void bubbleSortTest(int arr[], int len){
         if(arr[j]>arr[j+1])
         {
             printf("wroooong\n");
+            return;
 
         }
     }
@@ -88,7 +97,7 @@ void heapSortTest(int arr[], int len){
         if(arr[j]>arr[j+1])
         {
             printf("wroooong\n");
-
+            return;
         }
     }
 }
@@ -108,7 +117,7 @@ void countSortTest(int arr[], int len){
         if(arr[j]>arr[j+1])
         {
             printf("wroooong\n");
-
+            return;
         }
     }
 }
@@ -127,7 +136,7 @@ void radixSortTest(int arr[], int len){
         if(arr[j]>arr[j+1])
         {
             printf("wroooong\n");
-
+            return;
         }
     }
 }
@@ -146,7 +155,7 @@ void mergeSortTest(int arr[], int len){
         if(arr[j]>arr[j+1])
         {
             printf("wroooong\n");
-
+            return;
         }
     }
 }
@@ -165,7 +174,7 @@ void quickSortTest(int arr[], int len){
         if(arr[j]>arr[j+1])
         {
             printf("wroooong\n");
-
+            return;
         }
     }
 
