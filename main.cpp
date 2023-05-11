@@ -46,7 +46,6 @@ void insertionSortTest(int arr[], int len){
     }
 }
 
-
 void selectionSortTest(int arr[], int len){
     printf("selectionSort - %d elements\n",len);
     auto t1 = std::chrono::high_resolution_clock::now();
@@ -107,7 +106,6 @@ void heapSortTest(int arr[], int len){
         }
     }
 }
-
 
 void countSortTest(int arr[], int len){
     printf("countingSort - %d elements\n",len);
@@ -189,68 +187,132 @@ void quickSortTest(int arr[], int len){
     }
 
 }
+
+
+void testAscendingListOfNumbers(int numberOfElements){
+    generateListOfConsecutiveAscendingPositiveIntegers(0,10,numberOfElements,0);
+    std::ifstream fin("ascNumberList.txt");
+    int x, i = 0;
+    auto array = new int[numberOfElements];
+    while (fin>> x)
+        array[i++] = x;
+    printf("ASCENDING\n");
+    int*arrayB= new int[numberOfElements];
+    memcpy(arrayB,array,sizeof(int)*(numberOfElements-1));
+    stdSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    insertionSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    selectionSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    bubbleSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    heapSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    countSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    radixSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    mergeSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    quickSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+}
+
+void testDescendingListOfNumbers(int numberOfElements){
+    generateListOfConsecutiveDescendingPositiveIntegers(0,10,numberOfElements,1000000);
+    std::ifstream fin("descNumberList.txt");
+    int x, i = 0;
+    auto array = new int[numberOfElements];
+    while (fin>> x)
+        array[i++] = x;
+    printf("DESCENDING\n");
+    int*arrayB= new int[numberOfElements];
+    memcpy(arrayB,array,sizeof(int)*(numberOfElements-1));
+    stdSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    insertionSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    selectionSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    bubbleSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    heapSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    countSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    radixSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    mergeSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    quickSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+}
+
+void testRandomListOfNumbers(int numberOfElements){
+    generateListOfPositiveIntegers(0,1000000,numberOfElements);
+    std::ifstream fin("posNumberList.txt");
+    int x, i = 0;
+    auto array = new int[numberOfElements];
+    while (fin>> x)
+        array[i++] = x;
+
+    int*arrayB= new int[numberOfElements];
+    printf("RANDOM\n");
+    memcpy(arrayB,array,sizeof(int)*(numberOfElements-1));
+    stdSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    insertionSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    selectionSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    bubbleSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    heapSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    countSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    radixSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    mergeSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+    quickSortTest(arrayB,numberOfElements);
+    printf("------------------------------------\n");
+
+}
+
+
+
+
 int main(int argc, char **argv){
     int whatToDo,numberOfElements;
-    std::cin>>whatToDo>>numberOfElements;
+    std::cin>>numberOfElements;
+    testAscendingListOfNumbers(numberOfElements);
+    testDescendingListOfNumbers(numberOfElements);
+    testRandomListOfNumbers(numberOfElements);
 
-    if(whatToDo==1)
-        generateListOfPositiveIntegers(0,1000000,numberOfElements);
-
-    else {
-        std::ifstream finN("posNumberList.txt");
-        std::ifstream finA("ascNumberList.txt");
-        std::ifstream finD("descNumberList.txt");
-        int x, i = 0;
-        auto array = new int[numberOfElements];
-        while (finN>> x)
-            array[i++] = x;
-        printf("readEverything\n");
-        int*arrayB= new int[numberOfElements];
-        memcpy(arrayB,array,sizeof(int)*(numberOfElements-1));
-        stdSortTest(arrayB,numberOfElements);
-        printf("post sort %d \n",arrayB[0]);
-        printf("------------------------------------\n");
-        memcpy(arrayB,array,sizeof(int)*numberOfElements);
-        printf("pre sort %d \n",arrayB[0]);
-        insertionSortTest(arrayB,numberOfElements);
-        printf("post sort %d \n",arrayB[0]);
-        printf("------------------------------------\n");
-        memcpy(arrayB,array,sizeof(int)*numberOfElements);
-        printf("pre sort %d \n",arrayB[0]);
-        selectionSortTest(arrayB,numberOfElements);
-        printf("post sort %d \n",arrayB[0]);
-        printf("------------------------------------\n");
-        memcpy(arrayB,array,sizeof(int)*numberOfElements);
-        printf("pre sort %d \n",arrayB[0]);
-        bubbleSortTest(arrayB,numberOfElements);
-        printf("post sort %d \n",arrayB[0]);
-        printf("------------------------------------\n");
-        memcpy(arrayB,array,sizeof(int)*numberOfElements);
-        printf("pre sort %d \n",arrayB[0]);
-        heapSortTest(arrayB,numberOfElements);
-        printf("post sort %d \n",arrayB[0]);
-        printf("------------------------------------\n");
-        memcpy(arrayB,array,sizeof(int)*numberOfElements);
-        printf("pre sort %d \n",arrayB[0]);
-        countSortTest(arrayB,numberOfElements);
-        printf("post sort %d \n",arrayB[0]);
-        printf("------------------------------------\n");
-        memcpy(arrayB,array,sizeof(int)*numberOfElements);
-        printf("pre sort %d \n",arrayB[0]);
-        radixSortTest(arrayB,numberOfElements);
-        printf("post sort %d \n",arrayB[0]);
-        printf("------------------------------------\n");
-        memcpy(arrayB,array,sizeof(int)*numberOfElements);
-        printf("pre sort %d \n",arrayB[0]);
-        mergeSortTest(arrayB,numberOfElements);
-        printf("post sort %d \n",arrayB[0]);
-        printf("------------------------------------\n");
-        memcpy(arrayB,array,sizeof(int)*numberOfElements);
-        printf("pre sort %d \n",arrayB[0]);
-        quickSortTest(arrayB,numberOfElements);
-        printf("post sort %d \n",arrayB[0]);
-
-
-    }
-    return 0;
 }
