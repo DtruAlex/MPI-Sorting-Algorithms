@@ -6,8 +6,159 @@
 #include <algorithm>
 #include <cstring>
 
+void removeFiles(){
+    remove("stdTimes.txt");
+    remove("insertionTimes.txt");
+    remove("selectionTimes.txt");
+    remove("bubbleTimes.txt");
+    remove("heapTimes.txt");
+    remove("countingTimes.txt");
+    remove("radixTimes.txt");
+    remove("mergeTimes.txt");
+    remove("quickTimes.txt");
+}
+
+void stdCompileTimes(int numberOfRepetitions){
+    double sx=0,sy=0;
+    double x,y;
+    std::ifstream stdTimes;
+    stdTimes.open("stdTimes.txt");
+    FILE *times = fopen("finalTimes.txt","a");
+    while(stdTimes>>x>>y){
+    printf("s %2.8f %2.8f\n",x,y);
+    sx+=x;sy+=y;}
+    stdTimes.close();
+    fprintf(times,"stdSort %2.8f %2.8f\n",sx/numberOfRepetitions,sy/numberOfRepetitions);
+    fclose(times);
+}
+
+void insertionCompileTimes(int numberOfRepetitions){
+    double sx=0,sy=0;
+    double x,y;
+    std::ifstream insertionTimes;
+    insertionTimes.open("insertionTimes.txt");
+    FILE *times = fopen("finalTimes.txt","a");
+    while(insertionTimes>>x>>y){
+    printf("s %2.8f %2.8f\n",x,y);
+    sx+=x;sy+=y;}
+    insertionTimes.close();
+    fprintf(times,"insertionSort %2.8f %2.8f\n",sx/numberOfRepetitions,sy/numberOfRepetitions);
+    fclose(times);
+}
+
+void selectionCompileTimes(int numberOfRepetitions){
+    double sx=0,sy=0;
+    double x,y;
+    std::ifstream selectionTimes;
+    selectionTimes.open("selectionTimes.txt");
+    FILE *times = fopen("finalTimes.txt","a");
+    while(selectionTimes>>x>>y){
+    printf("s %2.8f %2.8f\n",x,y);
+    sx+=x;sy+=y;}
+    selectionTimes.close();
+    fprintf(times,"selectionSort %2.8f %2.8f\n",sx/numberOfRepetitions,sy/numberOfRepetitions);
+    fclose(times);
+}
+
+void bubbleCompileTimes(int numberOfRepetitions){
+    double sx=0,sy=0;
+    double x,y;
+    std::ifstream bubbleTimes;
+    bubbleTimes.open("bubbleTimes.txt");
+    FILE *times = fopen("finalTimes.txt","a");
+    while(bubbleTimes>>x>>y){
+    printf("s %2.8f %2.8f\n",x,y);
+    sx+=x;sy+=y;}
+    bubbleTimes.close();
+    fprintf(times,"bubbleSort %2.8f %2.8f\n",sx/numberOfRepetitions,sy/numberOfRepetitions);
+    fclose(times);
+}
+
+void heapCompileTimes(int numberOfRepetitions){
+    double sx=0,sy=0;
+    double x,y;
+    std::ifstream heapTimes;
+    heapTimes.open("heapTimes.txt");
+    FILE *times = fopen("finalTimes.txt","a");
+    while(heapTimes>>x>>y){
+    printf("s %2.8f %2.8f\n",x,y);
+    sx+=x;sy+=y;}
+    heapTimes.close();
+    fprintf(times,"heapSort %2.8f %2.8f\n",sx/numberOfRepetitions,sy/numberOfRepetitions);
+    fclose(times);
+}
+
+void countingCompileTimes(int numberOfRepetitions){
+    double sx=0,sy=0;
+    double x,y;
+    std::ifstream countingTimes;
+    countingTimes.open("countingTimes.txt");
+    FILE *times = fopen("finalTimes.txt","a");
+    while(countingTimes>>x>>y){
+    printf("s %2.8f %2.8f\n",x,y);
+    sx+=x;sy+=y;}
+    countingTimes.close();
+    fprintf(times,"countingSort %2.8f %2.8f\n",sx/numberOfRepetitions,sy/numberOfRepetitions);
+    fclose(times);
+}
+
+void radixCompileTimes(int numberOfRepetitions){
+    double sx=0,sy=0;
+    double x,y;
+    std::ifstream radixTimes;
+    radixTimes.open("radixTimes.txt");
+    FILE *times = fopen("finalTimes.txt","a");
+    while(radixTimes>>x>>y){
+    printf("s %2.8f %2.8f\n",x,y);
+    sx+=x;sy+=y;}
+    radixTimes.close();
+    fprintf(times,"radixSort %2.8f %2.8f\n",sx/numberOfRepetitions,sy/numberOfRepetitions);
+    fclose(times);
+}
+
+void mergeCompileTimes(int numberOfRepetitions){
+    double sx=0,sy=0;
+    double x,y;
+    std::ifstream mergeTimes;
+    mergeTimes.open("mergeTimes.txt");
+    FILE *times = fopen("finalTimes.txt","a");
+    while(mergeTimes>>x>>y){
+    printf("s %2.8f %2.8f\n",x,y);
+    sx+=x;sy+=y;}
+    mergeTimes.close();
+    fprintf(times,"mergeSort %2.8f %2.8f\n",sx/numberOfRepetitions,sy/numberOfRepetitions);
+    fclose(times);
+}
+
+void quickCompileTimes(int numberOfRepetitions){
+    double sx=0,sy=0;
+    double x,y;
+    std::ifstream quickTimes;
+    quickTimes.open("quickTimes.txt");
+    FILE *times = fopen("finalTimes.txt","a");
+    while(quickTimes>>x>>y){
+    printf("s %2.8f %2.8f\n",x,y);
+    sx+=x;sy+=y;}
+    quickTimes.close();
+    fprintf(times,"quickSort %2.8f %2.8f\n",sx/numberOfRepetitions,sy/numberOfRepetitions);
+    fclose(times);
+}
+
+void compileTimes(int numberOfRepetitions){
+    stdCompileTimes(numberOfRepetitions);
+    insertionCompileTimes(numberOfRepetitions);
+    selectionCompileTimes(numberOfRepetitions);
+    bubbleCompileTimes(numberOfRepetitions);
+    heapCompileTimes(numberOfRepetitions);
+    countingCompileTimes(numberOfRepetitions);
+    radixCompileTimes(numberOfRepetitions);
+    mergeCompileTimes(numberOfRepetitions);
+    quickCompileTimes(numberOfRepetitions);
+}
+
 void stdSortTest(int arr[], int len){
     printf("stdSort - %d elements\n",len);
+    FILE *file = fopen("stdTimes.txt","a");
     auto t1 = std::chrono::high_resolution_clock::now();
     clock_t start = clock();
     std::sort(arr,arr+len);
@@ -16,6 +167,8 @@ void stdSortTest(int arr[], int len){
     double elapsed = (double) (stop - start) / CLOCKS_PER_SEC; //cpu time
     std::chrono::duration<double> fp_ms = t2 - t1;
     printf("%2.8f -cpu time\n",elapsed);printf("%2.8f -real time \n",fp_ms.count());
+    fprintf(file,"%2.8f %2.8f \n",elapsed,fp_ms.count());
+    fclose(file);
     for(int j=0;j<len-1;j++)
     {
         if(arr[j]>arr[j+1])
@@ -28,6 +181,7 @@ void stdSortTest(int arr[], int len){
 
 void insertionSortTest(int arr[], int len){
     printf("insertionSort - %d elements\n",len);
+    FILE *file = fopen("insertionTimes.txt","a");
     auto t1 = std::chrono::high_resolution_clock::now();
     clock_t start = clock();
     insertionSort(arr,len);
@@ -36,6 +190,8 @@ void insertionSortTest(int arr[], int len){
     double elapsed = (double) (stop - start) / CLOCKS_PER_SEC; //cpu time
     std::chrono::duration<double> fp_ms = t2 - t1;
     printf("%2.8f -cpu time\n",elapsed);printf("%2.8f -real time \n",fp_ms.count());
+    fprintf(file,"%2.8f %2.8f \n",elapsed,fp_ms.count());
+    fclose(file);
     for(int j=0;j<len-1;j++)
     {
         if(arr[j] > arr[j + 1])
@@ -48,6 +204,7 @@ void insertionSortTest(int arr[], int len){
 
 void selectionSortTest(int arr[], int len){
     printf("selectionSort - %d elements\n",len);
+    FILE *file = fopen("selectionTimes.txt","a");
     auto t1 = std::chrono::high_resolution_clock::now();
     clock_t start = clock();
     selectionSort(arr,len);
@@ -56,6 +213,8 @@ void selectionSortTest(int arr[], int len){
     double elapsed = (double) (stop - start) / CLOCKS_PER_SEC; //cpu time
     std::chrono::duration<double> fp_ms = t2 - t1;
     printf("%2.8f -cpu time\n",elapsed);printf("%2.8f -real time \n",fp_ms.count());
+    fprintf(file,"%2.8f %2.8f \n",elapsed,fp_ms.count());
+    fclose(file);
     for(int j=0;j<len-1;j++)
     {
         if(arr[j]>arr[j+1])
@@ -68,6 +227,7 @@ void selectionSortTest(int arr[], int len){
 
 void bubbleSortTest(int arr[], int len){
     printf("bubbleSort - %d elements\n",len);
+    FILE *file = fopen("bubbleTimes.txt","a");
     auto t1 = std::chrono::high_resolution_clock::now();
     clock_t start = clock();
     bubbleSort(arr,len);
@@ -76,6 +236,8 @@ void bubbleSortTest(int arr[], int len){
     double elapsed = (double) (stop - start) / CLOCKS_PER_SEC; //cpu time
     std::chrono::duration<double> fp_ms = t2 - t1;
     printf("%2.8f -cpu time\n",elapsed);printf("%2.8f -real time \n",fp_ms.count());
+    fprintf(file,"%2.8f %2.8f \n",elapsed,fp_ms.count());
+    fclose(file);
     for(int j=0;j<len-1;j++)
     {
         if(arr[j]>arr[j+1])
@@ -89,6 +251,7 @@ void bubbleSortTest(int arr[], int len){
 
 void heapSortTest(int arr[], int len){
     printf("heapSort - %d elements\n",len);
+    FILE *file = fopen("heapTimes.txt","a");
     auto t1 = std::chrono::high_resolution_clock::now();
     clock_t start = clock();
     heapSort(arr,len);
@@ -97,6 +260,8 @@ void heapSortTest(int arr[], int len){
     double elapsed = (double) (stop - start) / CLOCKS_PER_SEC; //cpu time
     std::chrono::duration<double> fp_ms = t2 - t1;
     printf("%2.8f -cpu time\n",elapsed);printf("%2.8f -real time \n",fp_ms.count());
+    fprintf(file,"%2.8f %2.8f \n",elapsed,fp_ms.count());
+    fclose(file);
     for(int j=0;j<len-1;j++)
     {
         if(arr[j]>arr[j+1])
@@ -109,6 +274,7 @@ void heapSortTest(int arr[], int len){
 
 void countSortTest(int arr[], int len){
     printf("countingSort - %d elements\n",len);
+    FILE *file = fopen("countingTimes.txt","a");
     auto t1 = std::chrono::high_resolution_clock::now();
     clock_t start = clock();
     countSort(arr,len);
@@ -117,6 +283,8 @@ void countSortTest(int arr[], int len){
     double elapsed = (double) (stop - start) / CLOCKS_PER_SEC; //cpu time
     std::chrono::duration<double> fp_ms = t2 - t1;
     printf("%2.8f -cpu time\n",elapsed);printf("%2.8f -real time \n",fp_ms.count());
+    fprintf(file,"%2.8f %2.8f \n",elapsed,fp_ms.count());
+    fclose(file);
     for(int j=0;j<len-1;j++)
     {
         if(arr[j]>arr[j+1])
@@ -129,6 +297,7 @@ void countSortTest(int arr[], int len){
 
 void radixSortTest(int arr[], int len){
     printf("radixSort - %d elements\n",len);
+    FILE *file = fopen("radixTimes.txt","a");
     auto t1 = std::chrono::high_resolution_clock::now();
     clock_t start = clock();
     radixSort(arr,len);
@@ -137,6 +306,8 @@ void radixSortTest(int arr[], int len){
     double elapsed = (double) (stop - start) / CLOCKS_PER_SEC; //cpu time
     std::chrono::duration<double> fp_ms = t2 - t1;
     printf("%2.8f -cpu time\n",elapsed);printf("%2.8f -real time \n",fp_ms.count());
+    fprintf(file,"%2.8f %2.8f \n",elapsed,fp_ms.count());
+    fclose(file);
     for(int j=0;j<len-1;j++)
     {
         if(arr[j]>arr[j+1])
@@ -149,6 +320,7 @@ void radixSortTest(int arr[], int len){
 
 void mergeSortTest(int arr[], int len){
     printf("mergeSort - %d elements\n",len);
+    FILE *file = fopen("mergeTimes.txt","a");
     auto t1 = std::chrono::high_resolution_clock::now();
     clock_t start = clock();
     mergeSort(arr,0,len);
@@ -157,6 +329,8 @@ void mergeSortTest(int arr[], int len){
     double elapsed = (double) (stop - start) / CLOCKS_PER_SEC; //cpu time
     std::chrono::duration<double> fp_ms = t2 - t1;
     printf("%2.8f -cpu time\n",elapsed);printf("%2.8f -real time \n",fp_ms.count());
+    fprintf(file,"%2.8f %2.8f \n",elapsed,fp_ms.count());
+    fclose(file);
     for(int j=0;j<len-1;j++)
     {
         if(arr[j]>arr[j+1])
@@ -169,6 +343,7 @@ void mergeSortTest(int arr[], int len){
 
 void quickSortTest(int arr[], int len){
     printf("quickSort - %d elements\n",len);
+    FILE *file = fopen("quickTimes.txt","a");
     auto t1 = std::chrono::high_resolution_clock::now();
     clock_t start = clock();
     quickSort(arr,0,len);
@@ -177,6 +352,8 @@ void quickSortTest(int arr[], int len){
     double elapsed = (double) (stop - start) / CLOCKS_PER_SEC; //cpu time
     std::chrono::duration<double> fp_ms = t2 - t1;
     printf("%2.8f -cpu time\n",elapsed);printf("%2.8f -real time \n",fp_ms.count());
+    fprintf(file,"%2.8f %2.8f \n",elapsed,fp_ms.count());
+    fclose(file);
     for(int j=0;j<len-1;j++)
     {
         if(arr[j]>arr[j+1])
@@ -305,14 +482,42 @@ void testRandomListOfNumbers(int numberOfElements){
 
 }
 
-
-
-
 int main(int argc, char **argv){
-    int whatToDo,numberOfElements;
-    std::cin>>numberOfElements;
-    testAscendingListOfNumbers(numberOfElements);
-    testDescendingListOfNumbers(numberOfElements);
-    testRandomListOfNumbers(numberOfElements);
-
+    int typeOfTest,numberOfElements,numberOfRepetitions,i=1;
+    std::cin>>numberOfRepetitions>>typeOfTest>>numberOfElements;
+    while(i<=numberOfRepetitions){
+    switch (typeOfTest) {
+        case 1:{testAscendingListOfNumbers(numberOfElements);
+            break;}
+        case 2:{testDescendingListOfNumbers(numberOfElements);
+            break;}
+        case 3:{
+            testRandomListOfNumbers(numberOfElements);
+            break;}
+        default:
+            removeFiles();
+    }
+        i++;}
+    FILE *times = fopen("finalTimes.txt","a");
+    switch (typeOfTest) {
+        case 1: {
+            fprintf(times, "TestType: %s  Number of elements:%d  Number of Runs:%d \n", "List of Ascending Numbers",
+                    numberOfElements, numberOfRepetitions);
+            break;
+        }
+        case 2: {
+            fprintf(times, "TestType: %s  Number of elements:%d  Number of Runs:%d \n", "List of Descending Numbers",
+                    numberOfElements, numberOfRepetitions);
+            break;
+        }
+        case 3: {
+            fprintf(times, "TestType: %s  Number of elements:%d  Number of Runs:%d \n", "List Random Numbers",
+                    numberOfElements, numberOfRepetitions);;
+            break;
+        }
+    }
+    fprintf(times,"TestType: %d\n",typeOfTest);
+    fclose(times);
+    compileTimes(numberOfRepetitions);
+    return 0;
 }
