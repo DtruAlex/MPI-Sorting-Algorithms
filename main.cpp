@@ -5,6 +5,7 @@
 #include <chrono>
 #include <algorithm>
 #include <cstring>
+#include <csignal>
 
 void removeFiles(){
     remove("stdTimes.txt");
@@ -367,6 +368,7 @@ void quickSortTest(int arr[], int len){
 
 
 void testAscendingListOfNumbers(int numberOfElements){
+    remove("ascNumberList.txt");
     generateListOfConsecutiveAscendingPositiveIntegers(0,10,numberOfElements,0);
     std::ifstream fin("ascNumberList.txt");
     int x, i = 0;
@@ -405,6 +407,7 @@ void testAscendingListOfNumbers(int numberOfElements){
 }
 
 void testDescendingListOfNumbers(int numberOfElements){
+    remove("descNumberList.txt");
     generateListOfConsecutiveDescendingPositiveIntegers(0,10,numberOfElements,1000000);
     std::ifstream fin("descNumberList.txt");
     int x, i = 0;
@@ -443,6 +446,7 @@ void testDescendingListOfNumbers(int numberOfElements){
 }
 
 void testRandomListOfNumbers(int numberOfElements){
+    remove("posNumberList.txt");
     generateListOfPositiveIntegers(0,1000000,numberOfElements);
     std::ifstream fin("posNumberList.txt");
     int x, i = 0;
@@ -483,41 +487,62 @@ void testRandomListOfNumbers(int numberOfElements){
 }
 
 int main(int argc, char **argv){
-    int typeOfTest,numberOfElements,numberOfRepetitions,i=1;
-    std::cin>>numberOfRepetitions>>typeOfTest>>numberOfElements;
-    while(i<=numberOfRepetitions){
-    switch (typeOfTest) {
-        case 1:{testAscendingListOfNumbers(numberOfElements);
-            break;}
-        case 2:{testDescendingListOfNumbers(numberOfElements);
-            break;}
-        case 3:{
-            testRandomListOfNumbers(numberOfElements);
-            break;}
-        default:
-            removeFiles();
+    int numberOfRepertitions[]={      100,1,   100,1,   100,1},//    10,0,     10,0,     10,0,        1,0,        1,0,        1,0},
+                 listOfElements[]={10000,1,10000,1,10000,1},//,100000,0,100000,0,100000,0,1000000,0,1000000,0,1000000,0},
+                 listOfTypes[]={        1,4,     2,4,     3,4};//      1,4,      2,4,      3,4,        1,4,        2,4,        3,4};
+    int rep,type,elem,i=1;
+    //std::cin>>rep>>type>>elem;
+    for(int j=0;j<6;j++) {
+        while (i <= numberOfRepertitions[j]) {
+            switch (listOfTypes[j]) {
+                case 1: {
+                    testAscendingListOfNumbers(listOfElements[j]);
+                    break;
+                }
+                case 2: {
+                    testDescendingListOfNumbers(listOfElements[j]);
+                    break;
+                }
+                case 3: {
+                    testRandomListOfNumbers(listOfElements[j]);
+                    break;
+                }
+                default:
+                    removeFiles();
+            }
+            i++;
+        }
+        FILE *times = fopen("finalTimes.txt", "a");
+        switch (listOfTypes[j]) {
+            case 1: {
+                fprintf(times, "TestType: %s  Number of elements:%d  Number of Runs:%d \n", "List of Ascending Numbers",
+                        listOfElements[j], numberOfRepertitions[j]);
+                fclose(times);
+                compileTimes(numberOfRepertitions[j]);
+                break;
+            }
+            case 2: {
+                fprintf(times, "TestType: %s  Number of elements:%d  Number of Runs:%d \n",
+                        "List of Descending Numbers",
+                        listOfElements[j], numberOfRepertitions[j]);
+                fclose(times);
+                compileTimes(numberOfRepertitions[j]);
+                break;
+            }
+            case 3: {
+                fprintf(times, "TestType: %s  Number of elements:%d  Number of Runs:%d \n", "List Random Numbers",
+                        listOfElements[j], numberOfRepertitions[j]);
+                fclose(times);
+                compileTimes(numberOfRepertitions[j]);
+                break;}
+            default:    {
+                fprintf(times,"DELETED FILES - PLS IGNORE\n");
+                fclose(times);
+            }
+
+        }
+    usleep(1*1000*10000);
+
     }
-        i++;}
-    FILE *times = fopen("finalTimes.txt","a");
-    switch (typeOfTest) {
-        case 1: {
-            fprintf(times, "TestType: %s  Number of elements:%d  Number of Runs:%d \n", "List of Ascending Numbers",
-                    numberOfElements, numberOfRepetitions);
-            break;
-        }
-        case 2: {
-            fprintf(times, "TestType: %s  Number of elements:%d  Number of Runs:%d \n", "List of Descending Numbers",
-                    numberOfElements, numberOfRepetitions);
-            break;
-        }
-        case 3: {
-            fprintf(times, "TestType: %s  Number of elements:%d  Number of Runs:%d \n", "List Random Numbers",
-                    numberOfElements, numberOfRepetitions);;
-            break;
-        }
-    }
-    fprintf(times,"TestType: %d\n",typeOfTest);
-    fclose(times);
-    compileTimes(numberOfRepetitions);
     return 0;
 }
