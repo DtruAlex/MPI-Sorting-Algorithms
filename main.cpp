@@ -486,25 +486,24 @@ void testRandomListOfNumbers(int numberOfElements){
 
 }
 
-int main(int argc, char **argv){
-    int numberOfRepertitions[]={      100,1,   100,1,   100,1},//    10,0,     10,0,     10,0,        1,0,        1,0,        1,0},
-                 listOfElements[]={10000,1,10000,1,10000,1},//,100000,0,100000,0,100000,0,1000000,0,1000000,0,1000000,0},
-                 listOfTypes[]={        1,4,     2,4,     3,4};//      1,4,      2,4,      3,4,        1,4,        2,4,        3,4};
-    int rep,type,elem,i=1;
-    //std::cin>>rep>>type>>elem;
-    for(int j=0;j<6;j++) {
-        while (i <= numberOfRepertitions[j]) {
-            switch (listOfTypes[j]) {
+int main(int argc, char* argv[]){
+    int rep= atoi(argv[1]),
+        type= atoi(argv[2]),
+        elem= atoi(argv[3]),
+        i=1;
+
+        while (i <= rep) {
+            switch (type) {
                 case 1: {
-                    testAscendingListOfNumbers(listOfElements[j]);
+                    testAscendingListOfNumbers(elem);
                     break;
                 }
                 case 2: {
-                    testDescendingListOfNumbers(listOfElements[j]);
+                    testDescendingListOfNumbers(elem);
                     break;
                 }
                 case 3: {
-                    testRandomListOfNumbers(listOfElements[j]);
+                    testRandomListOfNumbers(elem);
                     break;
                 }
                 default:
@@ -513,36 +512,34 @@ int main(int argc, char **argv){
             i++;
         }
         FILE *times = fopen("finalTimes.txt", "a");
-        switch (listOfTypes[j]) {
+        switch (type) {
             case 1: {
                 fprintf(times, "TestType: %s  Number of elements:%d  Number of Runs:%d \n", "List of Ascending Numbers",
-                        listOfElements[j], numberOfRepertitions[j]);
+                        elem, rep);
                 fclose(times);
-                compileTimes(numberOfRepertitions[j]);
+                compileTimes(rep);
                 break;
             }
             case 2: {
                 fprintf(times, "TestType: %s  Number of elements:%d  Number of Runs:%d \n",
                         "List of Descending Numbers",
-                        listOfElements[j], numberOfRepertitions[j]);
+                        elem, rep);
                 fclose(times);
-                compileTimes(numberOfRepertitions[j]);
+                compileTimes(rep);
                 break;
             }
             case 3: {
                 fprintf(times, "TestType: %s  Number of elements:%d  Number of Runs:%d \n", "List Random Numbers",
-                        listOfElements[j], numberOfRepertitions[j]);
+                        elem, rep);
                 fclose(times);
-                compileTimes(numberOfRepertitions[j]);
+                compileTimes(rep);
                 break;}
             default:    {
                 fprintf(times,"DELETED FILES - PLS IGNORE\n");
                 fclose(times);
+                break;
             }
-
         }
-    usleep(1*1000*10000);
-
-    }
+    usleep(1*1000*1000);
     return 0;
 }
