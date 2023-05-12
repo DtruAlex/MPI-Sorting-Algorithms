@@ -6,6 +6,106 @@
 #include <algorithm>
 #include <cstring>
 
+class finalTime{
+public:
+    double cpuTime,realTime;
+    finalTime();
+};
+finalTime::finalTime() {
+    this->cpuTime=0;
+    this->realTime=0;
+}
+
+//UTILITIES
+finalTime getFinalTimesFromFile(std::ifstream& file,int numberOfRepetitions){
+    finalTime times;
+    double x,y;
+    printf("1shit %2.8f %2.8f \n",times.cpuTime,times.realTime);
+    while(file>>x>>y)
+    {
+        printf("x:%f y:%f\n",x,y);
+        times.cpuTime+=x;
+        times.realTime+=y;
+    }
+    printf("2shit %2.8f %2.8f \n",times.cpuTime,times.realTime);
+    times.cpuTime/=(double)numberOfRepetitions;
+    times.realTime/=(double)numberOfRepetitions;
+    printf("3shit %2.8f %2.8f \n\n",times.cpuTime,times.realTime);
+    return times;
+
+}
+
+void writeToFile(const char *filename, double cpuTime, std::chrono::duration<double> realTime)
+{
+    FILE* fp = fopen(filename, "a");
+    double x=cpuTime,y=realTime.count();
+    printf("writeToFile %2.8f %2.8f \n",x,y);
+    fprintf(fp,"%2.8f %2.8f\n",cpuTime,realTime.count());
+}
+
+void compileTimes(int numberOfElements,int numberOfRepetitions) {
+//    std::ofstream pstdTime("stdTimes.txt");
+//    std::ofstream pinsertion("insertionTimes.txt");
+//    std::ofstream pselection("selectionTimes.txt");
+//    std::ofstream pbubble("bubbleTimes.txt");
+//    std::ofstream pheap("heapTimes.txt");
+//    std::ofstream pcount("countTimes.txt");
+//    std::ofstream pradix("radixTimes.txt");
+//    std::ofstream pmerge("mergeTimes.txt");
+//    std::ofstream pquick("quickTimes.txt");
+//    pstdTime<<"\n";pinsertion<<"\n";pselection<<"\n";pbubble<<"\n";pheap<<"\n";pcount<<"\n";pradix<<"\n";pmerge<<"\n";pquick<<"\n";
+//    pstdTime.close();pinsertion.close();pselection.close();pbubble.close();pheap.close();pcount.close();pradix.close();pmerge.close();pquick.close();
+    finalTime finalTimes= *new finalTime;
+    FILE* times = fopen("finalTimes.txt", "a+");
+    std::ifstream std;std.open("stdTimes.txt");
+    std::ifstream insertion;insertion.open("insertionTimes.txt");
+    std::ifstream selection;selection.open("selectionTimes.txt");
+    std::ifstream bubble;bubble.open("bubbleTimes.txt");
+    std::ifstream heap;heap.open("heapTimes.txt");
+    std::ifstream count;count.open("countTimes.txt");
+    std::ifstream radix;radix.open("radixTimes.txt");
+    std::ifstream merge;merge.open("mergeTimes.txt");
+    std::ifstream quick;quick.open("quickTimes.txt");
+    fprintf(times,"%d %d\n",numberOfElements,numberOfRepetitions);
+    double x,y;
+    std>>x>>y;
+    printf("x:%f y:%f\n",x,y);
+    finalTimes=getFinalTimesFromFile(std,numberOfRepetitions);
+    fprintf(times,"StdSort %2.8f %2.8f \n",finalTimes.realTime,finalTimes.cpuTime);
+
+    finalTimes=getFinalTimesFromFile(insertion,numberOfRepetitions);
+    fprintf(times,"InsertionSort %2.8f %2.8f \n",finalTimes.realTime,finalTimes.cpuTime);
+    //std::remove("insertionTimes.txt");
+
+    finalTimes=getFinalTimesFromFile(selection,numberOfRepetitions);
+    fprintf(times,"SelectionSort %2.8f %2.8f \n",finalTimes.realTime,finalTimes.cpuTime);
+    //std::remove("selectionTimes.txt");
+
+    finalTimes=getFinalTimesFromFile(bubble,numberOfRepetitions);
+    fprintf(times,"BubbleSort %2.8f %2.8f \n",finalTimes.realTime,finalTimes.cpuTime);
+    //std::remove("bubbleTimes.txt");
+
+    finalTimes=getFinalTimesFromFile(heap,numberOfRepetitions);
+    fprintf(times,"heapSort %2.8f %2.8f \n",finalTimes.realTime,finalTimes.cpuTime);
+    //std::remove("heapTimes.txt");
+
+    finalTimes=getFinalTimesFromFile(count,numberOfRepetitions);
+    fprintf(times,"countSort %2.8f %2.8f \n",finalTimes.realTime,finalTimes.cpuTime);
+    //std::remove("countTimes.txt");
+
+    finalTimes=getFinalTimesFromFile(radix,numberOfRepetitions);
+    fprintf(times,"radixSort %2.8f %2.8f \n",finalTimes.realTime,finalTimes.cpuTime);
+    //std::remove("radixTimes.txt");
+
+    finalTimes=getFinalTimesFromFile(merge,numberOfRepetitions);
+    fprintf(times,"mergeSort %2.8f %2.8f \n",finalTimes.realTime,finalTimes.cpuTime);
+    //std::remove("mergeTimes.txt");
+
+    finalTimes=getFinalTimesFromFile(quick,numberOfRepetitions);
+    fprintf(times,"quickSort %2.8f %2.8f \n",finalTimes.realTime,finalTimes.cpuTime);
+    //std::remove("quickTimes.txt");
+}
+//SORTING TESTS
 void stdSortTest(int arr[], int len){
     printf("stdSort - %d elements\n",len);
     auto t1 = std::chrono::high_resolution_clock::now();
@@ -24,6 +124,7 @@ void stdSortTest(int arr[], int len){
             return;
         }
     }
+    writeToFile("stdTimes.txt",elapsed,fp_ms);
 }
 
 void insertionSortTest(int arr[], int len){
@@ -44,6 +145,7 @@ void insertionSortTest(int arr[], int len){
             return;
         }
     }
+    writeToFile("insertionTimes.txt",elapsed,fp_ms);
 }
 
 void selectionSortTest(int arr[], int len){
@@ -64,6 +166,7 @@ void selectionSortTest(int arr[], int len){
             return;
         }
     }
+    writeToFile("selectionTimes.txt",elapsed,fp_ms);
 }
 
 void bubbleSortTest(int arr[], int len){
@@ -85,6 +188,7 @@ void bubbleSortTest(int arr[], int len){
 
         }
     }
+    writeToFile("bubbleTimes.txt",elapsed,fp_ms);
 }
 
 void heapSortTest(int arr[], int len){
@@ -105,6 +209,7 @@ void heapSortTest(int arr[], int len){
             return;
         }
     }
+    writeToFile("heapTimes.txt",elapsed,fp_ms);
 }
 
 void countSortTest(int arr[], int len){
@@ -125,6 +230,7 @@ void countSortTest(int arr[], int len){
             return;
         }
     }
+    writeToFile("countTimes.txt",elapsed,fp_ms);
 }
 
 void radixSortTest(int arr[], int len){
@@ -145,6 +251,7 @@ void radixSortTest(int arr[], int len){
             return;
         }
     }
+    writeToFile("radixTimes.txt",elapsed,fp_ms);
 }
 
 void mergeSortTest(int arr[], int len){
@@ -165,6 +272,7 @@ void mergeSortTest(int arr[], int len){
             return;
         }
     }
+    writeToFile("mergeTimes.txt",elapsed,fp_ms);
 }
 
 void quickSortTest(int arr[], int len){
@@ -185,10 +293,11 @@ void quickSortTest(int arr[], int len){
             return;
         }
     }
+    writeToFile("quickTimes.txt",elapsed,fp_ms);
 
 }
 
-
+//LIST GENERATION
 void testAscendingListOfNumbers(int numberOfElements){
     generateListOfConsecutiveAscendingPositiveIntegers(0,10,numberOfElements,0);
     std::ifstream fin("ascNumberList.txt");
@@ -305,14 +414,16 @@ void testRandomListOfNumbers(int numberOfElements){
 
 }
 
-
-
-
-int main(int argc, char **argv){
-    int whatToDo,numberOfElements;
-    std::cin>>numberOfElements;
-    testAscendingListOfNumbers(numberOfElements);
-    testDescendingListOfNumbers(numberOfElements);
-    testRandomListOfNumbers(numberOfElements);
+int main(){
+    int numberOfRepetitions,numberOfElements;
+    std::cin>>numberOfRepetitions>>numberOfElements;
+    for(int i=0;i<numberOfRepetitions;i++) {
+        testAscendingListOfNumbers(numberOfElements);
+        compileTimes(numberOfElements,numberOfRepetitions);
+        testDescendingListOfNumbers(numberOfElements);
+        compileTimes(numberOfElements,numberOfRepetitions);
+        testRandomListOfNumbers(numberOfElements);
+        compileTimes(numberOfElements,numberOfRepetitions);
+    }
 
 }
