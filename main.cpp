@@ -147,9 +147,9 @@ void quickCompileTimes(int numberOfRepetitions){
 
 void compileTimes(int numberOfRepetitions){
     stdCompileTimes(numberOfRepetitions);
-    insertionCompileTimes(numberOfRepetitions);
-    selectionCompileTimes(numberOfRepetitions);
-    bubbleCompileTimes(numberOfRepetitions);
+//    insertionCompileTimes(numberOfRepetitions);
+//    selectionCompileTimes(numberOfRepetitions);
+//    bubbleCompileTimes(numberOfRepetitions);
     heapCompileTimes(numberOfRepetitions);
     countingCompileTimes(numberOfRepetitions);
     radixCompileTimes(numberOfRepetitions);
@@ -379,15 +379,15 @@ void testAscendingListOfNumbers(int numberOfElements){
     int*arrayB= new int[numberOfElements];
     memcpy(arrayB,array,sizeof(int)*(numberOfElements-1));
     stdSortTest(arrayB,numberOfElements);
-    printf("------------------------------------\n");
-    memcpy(arrayB,array,sizeof(int)*numberOfElements);
-    insertionSortTest(arrayB,numberOfElements);
-    printf("------------------------------------\n");
-    memcpy(arrayB,array,sizeof(int)*numberOfElements);
-    selectionSortTest(arrayB,numberOfElements);
-    printf("------------------------------------\n");
-    memcpy(arrayB,array,sizeof(int)*numberOfElements);
-    bubbleSortTest(arrayB,numberOfElements);
+//    printf("------------------------------------\n");
+//    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+//    insertionSortTest(arrayB,numberOfElements);
+//    printf("------------------------------------\n");
+//    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+//    selectionSortTest(arrayB,numberOfElements);
+//    printf("------------------------------------\n");
+//    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+//    bubbleSortTest(arrayB,numberOfElements);
     printf("------------------------------------\n");
     memcpy(arrayB,array,sizeof(int)*numberOfElements);
     heapSortTest(arrayB,numberOfElements);
@@ -408,7 +408,7 @@ void testAscendingListOfNumbers(int numberOfElements){
 
 void testDescendingListOfNumbers(int numberOfElements){
     remove("descNumberList.txt");
-    generateListOfConsecutiveDescendingPositiveIntegers(0,10,numberOfElements,1000000);
+    generateListOfConsecutiveDescendingPositiveIntegers(0,10,numberOfElements,100000);
     std::ifstream fin("descNumberList.txt");
     int x, i = 0;
     auto array = new int[numberOfElements];
@@ -418,15 +418,15 @@ void testDescendingListOfNumbers(int numberOfElements){
     int*arrayB= new int[numberOfElements];
     memcpy(arrayB,array,sizeof(int)*(numberOfElements-1));
     stdSortTest(arrayB,numberOfElements);
-    printf("------------------------------------\n");
-    memcpy(arrayB,array,sizeof(int)*numberOfElements);
-    insertionSortTest(arrayB,numberOfElements);
-    printf("------------------------------------\n");
-    memcpy(arrayB,array,sizeof(int)*numberOfElements);
-    selectionSortTest(arrayB,numberOfElements);
-    printf("------------------------------------\n");
-    memcpy(arrayB,array,sizeof(int)*numberOfElements);
-    bubbleSortTest(arrayB,numberOfElements);
+//    printf("------------------------------------\n");
+//    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+//    insertionSortTest(arrayB,numberOfElements);
+//    printf("------------------------------------\n");
+//    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+//    selectionSortTest(arrayB,numberOfElements);
+//    printf("------------------------------------\n");
+//    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+//    bubbleSortTest(arrayB,numberOfElements);
     printf("------------------------------------\n");
     memcpy(arrayB,array,sizeof(int)*numberOfElements);
     heapSortTest(arrayB,numberOfElements);
@@ -447,7 +447,7 @@ void testDescendingListOfNumbers(int numberOfElements){
 
 void testRandomListOfNumbers(int numberOfElements){
     remove("posNumberList.txt");
-    generateListOfPositiveIntegers(0,1000000,numberOfElements);
+    generateListOfPositiveIntegers(0,100000,numberOfElements);
     std::ifstream fin("posNumberList.txt");
     int x, i = 0;
     auto array = new int[numberOfElements];
@@ -459,16 +459,16 @@ void testRandomListOfNumbers(int numberOfElements){
     memcpy(arrayB,array,sizeof(int)*(numberOfElements-1));
     stdSortTest(arrayB,numberOfElements);
     printf("------------------------------------\n");
-    memcpy(arrayB,array,sizeof(int)*numberOfElements);
-    insertionSortTest(arrayB,numberOfElements);
-    printf("------------------------------------\n");
-    memcpy(arrayB,array,sizeof(int)*numberOfElements);
-    selectionSortTest(arrayB,numberOfElements);
-    printf("------------------------------------\n");
-    memcpy(arrayB,array,sizeof(int)*numberOfElements);
-    bubbleSortTest(arrayB,numberOfElements);
-    printf("------------------------------------\n");
-    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+   // memcpy(arrayB,array,sizeof(int)*numberOfElements);
+   // insertionSortTest(arrayB,numberOfElements);
+   // printf("------------------------------------\n");
+//    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+//    selectionSortTest(arrayB,numberOfElements);
+//    printf("------------------------------------\n");
+//    memcpy(arrayB,array,sizeof(int)*numberOfElements);
+//    bubbleSortTest(arrayB,numberOfElements);
+//    printf("------------------------------------\n");
+//    memcpy(arrayB,array,sizeof(int)*numberOfElements);
     heapSortTest(arrayB,numberOfElements);
     printf("------------------------------------\n");
     memcpy(arrayB,array,sizeof(int)*numberOfElements);
@@ -487,10 +487,11 @@ void testRandomListOfNumbers(int numberOfElements){
 }
 
 int main(int argc, char* argv[]){
-    int rep= atoi(argv[1]),
-        type= atoi(argv[2]),
-        elem= atoi(argv[3]),
+    int rep,//= atoi(argv[1]),
+        type,//= atoi(argv[2]),
+        elem,//= atoi(argv[3]),
         i=1;
+    std::cin>>rep>>type>>elem;
 
         while (i <= rep) {
             switch (type) {
